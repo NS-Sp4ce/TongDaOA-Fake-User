@@ -1,5 +1,5 @@
 # TongDaOA-Fake-User
-通达OA 伪造任意用户登录漏洞
+通达OA 前台任意用户登录漏洞
 
 # 使用方法
 1. 更改POC.py中的URL
