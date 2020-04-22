@@ -82,7 +82,7 @@ def get2017Session(url):
             res = requests.get(getCodeUidUrl)
             print('[+]Get Available COOKIE:'+res.headers['Set-Cookie'])
         else:
-            print('[-]Something Wrong With '+url)
+            print('[-]Something Wrong With '+url  + ' Maybe Not Vulnerable ?')
     except:
         print('[-]Something Wrong With '+url)
 
