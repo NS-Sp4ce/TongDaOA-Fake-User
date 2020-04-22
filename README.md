@@ -1,5 +1,6 @@
 # TongDaOA-Fake-User
 通达OA 前台任意用户登录漏洞
+**仅供安全研究，禁止非法利用！**
 
 # 使用方法
 1. poc.py -v 版本 -url url
